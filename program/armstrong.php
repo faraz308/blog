@@ -1,4 +1,5 @@
 <?php
+/* an armstrong program*/
 $num=407;
 $total=0;
 $x=$num;
