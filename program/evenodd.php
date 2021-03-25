@@ -1,4 +1,5 @@
 <?php
+/* an armstrong program*/
 $number=46;
 if($number%2==0)
 {
