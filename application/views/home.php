@@ -15,7 +15,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <body>
 
     <div class="container mt-5">
-       
+       <form>
+		Category : <select name='category' onchange='this.form.submit()'>
+		<option value=''> Select </option>
+		<?php 
+		
+		if(!empty($category) && is_array($category)){
+			foreach($category as $row){
+				?>
+				<option <?php echo ((isset($inputGet['category']) && $inputGet['category'] == $row['id']) ? "selected" : "");?> value="<?php echo $row['id']; ?>"><?php echo $row['categoryName']?></option>
+				
+				<?php
+			}
+		}
+		?>
+		</select>
+		<noscript><input type="submit" value="Submit"></noscript>
+		</form>
         <!-- Display posts from database -->
         <div class="row">
             <?php if(!empty($content) && is_array($content)){

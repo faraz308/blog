@@ -20,8 +20,18 @@ class Home extends CI_Controller {
 	 */
 	public function index()
 	{
+		$category = '';
+		if($this->input->get()){
+			$inputGet = $data['inputGet'] = $this->input->get();
+			if(isset($inputGet['category'])){
+			$category = $inputGet['category'];	
+			}
+		}
+		
 		$this->load->model('content');	
-		$data['content'] = $this->content->get_content();
+		$data['content'] = $this->content->get_content($category);
+		$data['category'] = $this->content->get_category();
+		//echo '<pre>'; print_r($data);exit;
 		$this->load->view('home', $data);
 	}
 }
