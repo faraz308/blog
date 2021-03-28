@@ -26,5 +26,13 @@ class Content extends CI_Model
         return $query->result_array();
 		
     }
+	
+	public function get_content_by_category(){
+	 $this->db->select();
+     $this->db->from('content');
+     $this->db->join('category', 'content.categoryId = category.id', 'INNER');
+      $query = $this->db->get();
+	 return $query->result_array();
+	}
 }
 ?>

@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -28,6 +29,29 @@
                     </div>
                 </nav>
                 
+	<table border="1" cellspacing="2" cellpadding="2"> 
+      <tr> 
+          <td> <font face="Arial">id </font> </td> 
+          <td> <font face="Arial">Name</font> </td> 
+		  <td> <font face="Arial">Category Name</font> </td> 
+          <td> Edit </td>
+		  <td> Delete </td>
+      </tr>
+
+  <?php if(!empty($content) && is_array($content)){
+			foreach($content as $row){ 
+             echo '<tr> 
+                  <td>'.$row['id'].'</td> 
+                  <td>'.$row['title'].'</td> 
+				  <td>'.$row['categoryName'].'</td> 
+				  <td> <a href=""> Click to Edit</a></td> 
+				  <td> <a href=""> Click to Delete</a></td> 
+                  
+              </tr>';
+    }
+} 
+?>
+</table>
             </div>
         </div>
     </body>
