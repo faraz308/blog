@@ -13,8 +13,9 @@ class dashboardController extends CI_Controller {
 	}
    
     public function index() {
-		
-        $this->load->view('dashboard');
+		$this->load->model('content');	
+		$data['content'] = $this->content->get_content_by_category();
+        $this->load->view('dashboard', $data);
     }
 	
 	public function logout(){
