@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Dashboard</title>
+        <title><?php echo $title?></title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
@@ -23,13 +23,14 @@
 
                                 <div class="navbar-dropdown">
                                     <a href="<?php echo base_url('dashboardController/logout')?>" class="navbar-item">Sign out</a>
-                                </div>
+									
+                              </div>
                             </div>
                         </div>
                     </div>
                 </nav>
                 
-	<table border="1" cellspacing="2" cellpadding="2"> 
+	<table border="2" cellspacing="2" cellpadding="2"> 
       <tr> 
           <td> <font face="Arial">id </font> </td> 
           <td> <font face="Arial">Name</font> </td> 

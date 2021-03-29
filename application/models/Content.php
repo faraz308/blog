@@ -34,5 +34,14 @@ class Content extends CI_Model
       $query = $this->db->get();
 	 return $query->result_array();
 	}
+	
+	public function addContent($data){
+		$insert = $this->db->insert('content', $data);
+		if ($insert) {
+		   return $this->db->insert_id();
+		} else {
+		   return false;
+		}
+	}
 }
 ?>
