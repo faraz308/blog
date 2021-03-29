@@ -32,10 +32,15 @@ class Home extends CI_Controller {
 		}
 		$this->load->model('content');	
 		/* pagination per page 5 out of total records */
+		
 		$config['base_url'] = base_url('/home');
-		$config['total_rows'] = $this->content->getCount();
+		$config['total_rows'] = $this->content->getCount($category);
 		$config['per_page'] = 3;
         $config["uri_segment"] = 2;
+		if(count($this->input->get()) > 0){
+			$config["suffix"] = '?' . http_build_query($this->input->get(), '', "&");
+			$config['first_url'] = $config['base_url'].'?'.http_build_query($this->input->get());
+		}
         $this->pagination->initialize($config);
         $page = ($this->uri->segment(2)) ? $this->uri->segment(2) : 0;
 		$data["links"] = $this->pagination->create_links();
