@@ -20,6 +20,7 @@ class Home extends CI_Controller {
 	 */
 	public function index()
 	{
+		$data['title'] = 'Blog using PHP(CI) & MySQL';
 		$category = '';
 		if($this->input->get()){
 			$inputGet = $data['inputGet'] = $this->input->get();
