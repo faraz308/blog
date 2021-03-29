@@ -47,8 +47,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 </div>
             <?php }
 			}?>
+			
         </div>
-       
+		<div class="row">
+		<br />
+        <div > <?php echo $links;?> </div>
+	   </div>
     </div>
 
     <!-- Bootstrap JS -->
