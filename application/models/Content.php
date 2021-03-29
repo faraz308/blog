@@ -5,17 +5,20 @@ class Content extends CI_Model
 	{
 		parent::__construct();
 	}
-    public function get_content($categoryId='', $number = 10, $start = 0)
+    public function get_content($categoryId='', $id='', $number = 10, $start = 0)
     {
         $this->db->select();
         $this->db->from('content');
 		if(!(empty($categoryId))){
 			$this->db->where('categoryId', $categoryId);
 		}
+		if(!(empty($id))){
+			$this->db->where('id', $id);
+		}
         $this->db->order_by('createdAt','desc');
         $this->db->limit($number, $start);
         $query = $this->db->get();
-        return $query->result_array();
+        return (!empty($id)? $query->row_array() : $query->result_array());
 		
     }
 	public function get_category()
@@ -28,7 +31,7 @@ class Content extends CI_Model
     }
 	
 	public function get_content_by_category(){
-	 $this->db->select();
+	 $this->db->select('content.id,content.title,content.description,category.categoryName');
      $this->db->from('content');
      $this->db->join('category', 'content.categoryId = category.id', 'INNER');
       $query = $this->db->get();
@@ -39,6 +42,15 @@ class Content extends CI_Model
 		$insert = $this->db->insert('content', $data);
 		if ($insert) {
 		   return $this->db->insert_id();
+		} else {
+		   return false;
+		}
+	}
+	public function editContent($id,$data){
+		$this->db->where('id', $id);
+        $update = $this->db->update('content', $data);
+		if ($update) {
+		   return true;
 		} else {
 		   return false;
 		}

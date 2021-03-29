@@ -14,7 +14,7 @@
                     <div id="navbarBasicExample" class="navbar-menu">
                         <div class="navbar-start">
                             <a href="<?php echo base_url('dashboardController')?>" class="navbar-item is-active">Dashboard</a>
-                            <a href="<?php echo base_url('dashboardController/createContent')?>" class="navbar-item">Create Content</a>
+                            <a href="<?php echo base_url('dashboardController/createEditContent')?>" class="navbar-item">Create Content</a>
                         </div>
 
                         <div class="navbar-end">
@@ -45,7 +45,7 @@
                   <td>'.$row['id'].'</td> 
                   <td>'.$row['title'].'</td> 
 				  <td>'.$row['categoryName'].'</td> 
-				  <td> <a href=""> Click to Edit</a></td> 
+				  <td> <a href=" '. base_url('dashboardController/createEditContent?id= ' . $row['id'] . '') .' "> Click to Edit</a></td> 
 				  <td> <a href=""> Click to Delete</a></td> 
                   
               </tr>';
