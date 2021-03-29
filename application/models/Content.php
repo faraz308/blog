@@ -55,5 +55,14 @@ class Content extends CI_Model
 		   return false;
 		}
 	}
+	public function deleteContent($id){
+		$this->db->where('id', $id);
+        $delete = $this->db->delete('content');
+		if ($delete) {
+		   return true;
+		} else {
+		   return false;
+		}
+	}
 }
 ?>
