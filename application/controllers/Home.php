@@ -20,6 +20,8 @@ class Home extends CI_Controller {
 	 */
 	public function index()
 	{
+		
+		$this->load->library('pagination');
 		$data['title'] = 'Blog using PHP(CI) & MySQL';
 		$category = '';
 		if($this->input->get()){
@@ -28,11 +30,18 @@ class Home extends CI_Controller {
 			$category = $inputGet['category'];	
 			}
 		}
-		
 		$this->load->model('content');	
-		$data['content'] = $this->content->get_content($category);
+		/* pagination per page 5 out of total records */
+		$config['base_url'] = base_url('/home');
+		$config['total_rows'] = $this->content->getCount();
+		$config['per_page'] = 3;
+        $config["uri_segment"] = 2;
+        $this->pagination->initialize($config);
+        $page = ($this->uri->segment(2)) ? $this->uri->segment(2) : 0;
+		$data["links"] = $this->pagination->create_links();
+		$data['content'] = $this->content->get_content($category,'',$config["per_page"], $page);
 		$data['category'] = $this->content->get_category();
-		//echo '<pre>'; print_r($data);exit;
+		
 		$this->load->view('home', $data);
 	}
 }

@@ -21,6 +21,9 @@ class Content extends CI_Model
         return (!empty($id)? $query->row_array() : $query->result_array());
 		
     }
+	 public function getCount() {
+        return $this->db->count_all('content');
+    }
 	public function get_category()
     {
         $this->db->select();
