@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 29, 2021 at 04:46 PM
+-- Generation Time: Mar 29, 2021 at 05:26 PM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 7.3.27
 
@@ -71,7 +71,8 @@ INSERT INTO `content` (`id`, `title`, `description`, `createdAt`, `updatedAt`, `
 (10, 'my first blog on food', 'In india we found a different taste and a level    of creativity in food', '2021-03-29 17:31:12', NULL, 3),
 (11, 'Different types of Food', 'Mughalai,Continental,Chinese,Italian,North indian', '2021-03-29 17:33:01', NULL, 3),
 (12, 'travelling places in  kashmir', 'kashmir a place which always covered with snow which makes it a diiferent and beautiful place', '2021-03-29 19:48:29', NULL, 4),
-(13, 'fashion', 'in todays world fashion becomes a very impotant parameter in every ones life', '2021-03-29 19:49:59', NULL, 1);
+(13, 'fashion', 'in todays world fashion becomes a very impotant parameter in every ones life', '2021-03-29 19:49:59', NULL, 1),
+(14, 'Travel to 2021', 'it\'s best to travel in 2021....', '2021-03-29 20:38:29', NULL, 4);
 
 -- --------------------------------------------------------
 
@@ -131,7 +132,7 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `content`
 --
 ALTER TABLE `content`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `user`
