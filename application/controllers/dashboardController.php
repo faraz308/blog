@@ -24,6 +24,19 @@ class dashboardController extends CI_Controller {
         $this->session->set_userdata($userData);
 		redirect( base_url('loginController/authenticate') ); 
 	}
+	public function deleteContent (){
+		 if ($this->input->get('id')>0) {
+			 $this->load->model('content');
+			 $result = $this->content->deleteContent($this->input->get('id'));
+			 if($result){
+				 $this->session->set_flashdata('deleteContentCompleted','content with id => ' . $this->input->get('id') .' has been successfully deleted');
+			 } else{
+				 $this->session->set_flashdata('wrongDeleteContent','Something went wrong while deleting content with id => ' . $this->input->get('id') .' ');
+			 }
+		}
+		redirect( base_url('/dashboardController') ); 
+		
+	}
 	public function createEditContent (){
 		$data['title'] = 'Blog - Create/Edit Content ';
 		$this->load->model('content');	
