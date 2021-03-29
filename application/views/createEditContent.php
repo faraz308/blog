@@ -19,7 +19,7 @@
                     <div class="field">
                         <label class="label">Title</label>
                         <div class="control">
-                            <input class="input" type="text" value="<?php echo $this->input->post('contentTitle') ?>" name="contentTitle" maxlength="100" placeholder="Enter Username">
+                            <input class="input" type="text" value="<?php echo (empty($this->input->post('contentTitle'))? (isset($resultContent['title'])? $resultContent['title']:'' ): $this->input->post('contentTitle')); ?>" name="contentTitle" maxlength="100" placeholder="Enter Username">
 							 <?php echo form_error('contentTitle'); ?> 
                         </div>
                     </div>
@@ -27,7 +27,9 @@
                         <label class="label">Description</label>
                         <div class="control">
                             <textarea  name="contentDescription" rows="4" cols="50">
-<?php echo $this->input->post('contentDescription') ?>
+<?php 
+echo (empty($this->input->post('contentDescription'))? (isset($resultContent['description'])?$resultContent['description']:'') : $this->input->post('contentDescription'));
+?>
                             </textarea>
 							<?php echo form_error('contentDescription'); ?>
                         </div>
@@ -42,7 +44,7 @@
 							if(!empty($category) && is_array($category)){
 								foreach($category as $row){
 									?>
-									<option <?php echo ($this->input->post('contentCategory') == $row['id'] ? "selected" : "");?> value="<?php echo $row['id']; ?>"><?php echo $row['categoryName']?></option>
+									<option <?php echo  ((!empty($this->input->post('contentCategory')) && $this->input->post('contentCategory') == $row['id'] )? "selected" : ($this->input->post('contentCategory')=='' && (isset($resultContent['categoryId']) && $resultContent['categoryId'] == $row['id']) ? "selected" : ""));?> value="<?php echo $row['id']; ?>"><?php echo $row['categoryName']?></option>
 									
 									<?php
 								}

@@ -24,9 +24,13 @@ class dashboardController extends CI_Controller {
         $this->session->set_userdata($userData);
 		redirect( base_url('loginController/authenticate') ); 
 	}
-	public function createContent (){
-		$data['title'] = 'Blog - Create Content ';
+	public function createEditContent (){
+		$data['title'] = 'Blog - Create/Edit Content ';
 		$this->load->model('content');	
+		$data['resultContent'] = [];
+	    if ($this->input->get('id')>0) {
+			$data['resultContent'] = $this->content->get_content('',$this->input->get('id'));
+		}
 		$data['category'] = $this->content->get_category();
 		$this->form_validation->set_rules('contentTitle', 'content Title', 'trim|required|min_length[5]|max_length[100]');
 		$this->form_validation->set_rules('contentDescription', 'content Description', 'trim|required');
@@ -35,24 +39,28 @@ class dashboardController extends CI_Controller {
 		$this->form_validation->set_message('required', 'Enter %s');
 		if ($this->form_validation->run() === FALSE)
 		{  
-		   $this->load->view('createContent', $data);
+		   $this->load->view('createEditContent', $data);
 		}
 		else
 		{ 
-		$insertData = [
-			'title' => $this->input->post('contentTitle'),
-			'description' => $this->input->post('contentDescription'),
-			'categoryId' => $this->input->post('contentCategory'),
-			];
-			
-		
-			$addContent = $this->content->addContent($insertData);
-			if($addContent != false ){
-				redirect( base_url('/dashboardController') ); 
-			} else {
-				$this->session->set_flashdata('wrongCreateContent','Something went wrong while adding new content');
-			}
-			$this->load->view('createContent', $data);
+			$insertEditData = [
+				'title' => $this->input->post('contentTitle'),
+				'description' => $this->input->post('contentDescription'),
+				'categoryId' => $this->input->post('contentCategory'),
+				];
+				if ($this->input->get('id')>0) {
+				   $insertEditData['updatedAt'] = date('Y-m-d H:i:s');
+				   $addEditContent = $this->content->editContent($this->input->get('id'), $insertEditData);
+			    } else {
+					$addEditContent = $this->content->addContent($insertEditData);
+				}
+				if($addEditContent != false ){
+					redirect( base_url('/dashboardController') ); 
+				} else {
+					$this->session->set_flashdata('wrongCreateContent','Something went wrong while adding new content');
+				}
+				
+				$this->load->view('createEditContent', $data);
 		}
 		
 	}
